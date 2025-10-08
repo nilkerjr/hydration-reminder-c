@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <unistd.h>  // for sleep()
+#include <unistd.h>
 #include <stdlib.h>
-#include <windows.h>  // for SetConsoleOutputCP
+#include <windows.h>
 
 void displayProgress(int waterIntake, int dailyGoal) 
 {
@@ -21,12 +21,11 @@ void displayProgress(int waterIntake, int dailyGoal)
 
     for (i = filledCups; i < totalCups; i++)
     {
-        // printf("");
+        /* do nothing */
     }
 
     printf(" (%d/%d ml)\n", waterIntake, dailyGoal);
 }
-
 
 int main() 
 {
@@ -41,10 +40,10 @@ int main()
 
     while (1) 
     { 
-        // infinite loop
+        /* infinite loop */
         if (waterIntake >= dailyGoal) 
         {
-            printf("\n🎉 You reached your daily goal! Keep tracking if you want more water.\n");
+            MessageBox(NULL, "You reached your daily goal! Keep tracking if you want more water.", "Hydration Reminder", MB_OK | MB_ICONINFORMATION);
         }
 
         printf("\nEnter amount of water you drank (ml) or 0 to skip: ");
@@ -56,8 +55,8 @@ int main()
             displayProgress(waterIntake, dailyGoal);
         }
 
-        printf("Next reminder in 30 minutes.\n");
-        sleep(1); // wait 30 minutes
+        sleep(10); // wait 30 minutes
+        MessageBox(NULL, "Time to drink water!", "Hydration Reminder", MB_OK | MB_ICONINFORMATION);
     }
 
     return 0;
