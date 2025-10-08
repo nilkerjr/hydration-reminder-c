@@ -32,7 +32,8 @@ int main()
     int dailyGoal = 0;
     int waterIntake = 0;
     int amount = 0;
-    
+    int choice = 0;
+
     SetConsoleOutputCP(CP_UTF8);
     printf("Welcome to Hydration Reminder (C version)!\n");
     printf("Enter your daily water goal in ml: ");
@@ -46,14 +47,30 @@ int main()
             MessageBox(NULL, "You reached your daily goal! Keep tracking if you want more water.", "Hydration Reminder", MB_OK | MB_ICONINFORMATION);
         }
 
-        printf("\nEnter amount of water you drank (ml) or 0 to skip: ");
-        scanf("%d", &amount);
+        printf("\nChoose water intake amount:\n");
+        printf("1. +100 ml\n");
+        printf("2. +200 ml\n");
+        printf("3. +300 ml\n");
+        printf("4. +400 ml\n");
+        printf("5. Skip / 0 ml\n");
+        printf("Your choice: ");
+        scanf("%d", &choice);
 
-        if (amount > 0) 
+        switch (choice) 
         {
-            waterIntake += amount;
-            displayProgress(waterIntake, dailyGoal);
+            case 1: waterIntake += 100; break;
+            case 2: waterIntake += 200; break;
+            case 3: waterIntake += 300; break;
+            case 4: waterIntake += 400; break;
+            case 5: waterIntake += 0; break;
+            default: printf("Invalid choice.\n"); continue;
         }
+
+        if (waterIntake > dailyGoal) 
+        {
+            waterIntake = dailyGoal;
+        }
+        displayProgress(waterIntake, dailyGoal);
 
         sleep(10); // wait 30 minutes
         MessageBox(NULL, "Time to drink water!", "Hydration Reminder", MB_OK | MB_ICONINFORMATION);
