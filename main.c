@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>  // for sleep()
 #include <stdlib.h>
+#include <windows.h>  // for SetConsoleOutputCP
 
 void displayProgress(int waterIntake, int dailyGoal) 
 {
@@ -27,6 +28,7 @@ int main()
     int waterIntake = 0;
     int amount = 0;
 
+    SetConsoleOutputCP(CP_UTF8);  // enable UTF-8
     printf("💧 Welcome to Hydration Reminder (C version)!\n");
     printf("Enter your daily water goal in ml: ");
     scanf("%d", &dailyGoal);
